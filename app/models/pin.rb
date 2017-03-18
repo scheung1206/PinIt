@@ -1,7 +1,5 @@
 class Pin < ActiveRecord::Base
 	searchkick
-	include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
 	acts_as_votable
 	belongs_to :user
 	has_many :comments
