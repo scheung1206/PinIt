@@ -1,0 +1,68 @@
+<div class="row" id="pin_show">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="panel-heading pin_image">
+        <%= image_tag @pin.image.url %>
+      </div>
+      <div class="panel-body">
+        <h1>
+          <%= @pin.title %>
+        </h1>
+        <p class="description">
+          <%= @pin.description %>
+        </p>
+      </div>
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-md-6">
+            <p class="user">
+              Submitted by
+              <a href="<%= user_path(@pin.user.id) %>">
+                <%= @pin.user.FirstName %>
+                <%= @pin.user.LastName %>
+              </a>
+            </p>
+          </div>
+          <div class="col-md-6">
+            <div class="btn-group pull-right">
+              <%= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do %>
+                <span class="glyphicon glyphicon-pushpin"></span>
+                <%= @pin.get_upvotes.size %>
+              <% end %>
+              <% if user_signed_in? && current_user.id == @pin.user_id %>
+                <%= link_to "Edit", edit_pin_path, class: "btn btn-default" %>
+                <%= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<h3 align="center"> Comments </h3>
+			<hr>
+			<% @comments.each do |comment| %>
+			<div>
+				<% if User.find(comment.user_id).avatar? %>
+				<image> <span><%= image_tag User.find(comment.user_id).avatar.url(:profile) %></span> </image>
+				<% end %>
+				<span><%= User.find(comment.user_id).FirstName %></span>
+				<span><%= User.find(comment.user_id).LastName %></span>
+			<span><%= comment.content %></span>
+			<div class="pull-right">
+			<% if user_signed_in? && current_user.id == comment.user_id%>
+				<%= link_to "Edit", edit_pin_comment_path(@pin.id,comment.id), class: "btn btn-default" %>
+				<%= link_to "Delete", pin_comment_path(@pin.id,comment.id), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+			<% end %>
+			</div>
+			</div>
+			<hr>
+			<% end %>
+			<br>
+			<%= render 'comments/form' %>
+		</div>
+</div>
+  </div>
+</div>

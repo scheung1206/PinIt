@@ -1,0 +1,80 @@
+<div class="row">
+    <h1 align="middle"> My Page </h1>
+    <div class="col-md-3 col-sm-12">
+      <% if @user.avatar? %>
+      <image> <%=image_tag @user.avatar.url(:profile) %> </image>
+      <% end %>
+        <h3><%=@user.FirstName%> <%=@user.LastName%></h3>
+          <p><%=@user.Bio%></p>
+        <% if current_user.id == @user.id %>
+            <p><a href="<%=edit_user_path(@user.id)%>" class="btn btn-primary" role="button">Edit Profile</a></p>
+        <br>
+        <div>
+          <div> Following </div>
+          <% @user.friendships.each do |friendship| %>
+              <div class="caption">
+                <a href="/users/<%=friendship.friend.id%>">
+                  <span><%=friendship.friend.FirstName%> <%=friendship.friend.LastName%></span>
+                  <%= link_to "Unfollow", friendship, :method => :delete %>
+                </a>
+              </div>
+          <% end %>
+        </div>
+        <% end %>
+        <% if (current_user.friendships.where(:friend_id => @user.id).where(:user_id => current_user.id).empty? and !(@user == current_user))%>
+  <%=link_to "Follow", friendships_path(:friend_id => @user.id), :method => :post %>
+<%else %>
+<%end%>
+    </div>
+    <h3 align="middle">Placeholder</h3>
+    <div class="col-md-9 col-sm-12">
+      <div class="col-md-4 col-sm-12">
+      <button class="btn btn-primary">Posts</button>
+      </div>
+      <div class="col-md-4 col-sm-12">
+      <button class="btn btn-primary">Albums</button>
+      </div>
+      <div class="col-md-4 col-sm-12">
+      <button class="btn btn-primary">Following</button>
+      </div>
+      <hr>
+    </div>
+
+    <div class="transitions-enabled col-md-9" id="pins">
+    <% @pins.each do |pin| %>
+      <div class="box panel panel-default">
+        <%= link_to (image_tag pin.image.url), pin %>
+        <h2>
+          <%= link_to pin.title, pin %>
+        </h2>
+        <div class="panel-footer">
+          <div class="row">
+            <div class="col-md-10">
+              <p class="user">
+                Submitted by
+                <a href="<%= user_path(pin.user.id) %>">
+                  <%= pin.user.FirstName %>
+                  <%= pin.user.LastName %>
+                </a>
+              </p>
+            </div>
+            <div class="col-md-2">
+              <p class="like">
+                <div class="btn-group pull-right">
+                  <%= link_to like_pin_path(pin), method: :put, class: "btn btn-default" do %>
+                    <span class="glyphicon glyphicon-pushpin"></span>
+                    <%= pin.get_upvotes.size %>
+                  <% end %>
+                  </div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+</div>
