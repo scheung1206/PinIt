@@ -7,7 +7,7 @@
         <h3><%=@user.FirstName%> <%=@user.LastName%></h3>
           <p><%=@user.Bio%></p>
         <% if current_user.id == @user.id %>
-            <p><a href="edit_user_path(<%=@user.id%>)" class="btn btn-primary" role="button">Edit Profile</a></p>
+        <a href="/users/<%=@user.id%>/edit" class="btn btn-default">Edit Profile</a>
         <br>
         <div>
           <div> Following </div>
