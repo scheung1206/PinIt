@@ -15,5 +15,5 @@
 						%p.like
 							.btn-group.pull-right
 								= link_to like_pin_path(pin), method: :put, class: "btn btn-default" do
-									%span.glyphicon.glyphicon-heart
+									%span.glyphicon.glyphicon-pushpin
 									= pin.get_upvotes.size
