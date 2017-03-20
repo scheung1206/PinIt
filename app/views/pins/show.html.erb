@@ -46,10 +46,13 @@
 			<% @comments.each do |comment| %>
 			<div>
 				<% if User.find(comment.user_id).avatar? %>
-				<image> <span><%= image_tag User.find(comment.user_id).avatar.url(:profile) %></span> </image>
+        <a href="/users/<%=User.find(comment.user_id).id%>">
+				<image> <span><%= image_tag User.find(comment.user_id).avatar.url(:comment) %></span> </image>
 				<% end %>
-				<span><%= User.find(comment.user_id).FirstName %></span>
-				<span><%= User.find(comment.user_id).LastName %></span>
+				<small><%= User.find(comment.user_id).FirstName %></small>
+				<small><%= User.find(comment.user_id).LastName %></small>
+      </a>
+
 			<span><%= comment.content %></span>
 			<div class="pull-right">
 			<% if user_signed_in? && current_user.id == comment.user_id%>

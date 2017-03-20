@@ -9,6 +9,6 @@ class User < ApplicationRecord
   has_many :friends, :through => :friendships
 
 
-  has_attached_file :avatar, :styles => { :profile => "150x150>" }
+  has_attached_file :avatar, :styles => { :profile => "150x150>", :comment => "75x75>"}
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 end
