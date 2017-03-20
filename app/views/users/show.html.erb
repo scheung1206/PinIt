@@ -14,6 +14,7 @@
           <% @user.friendships.each do |friendship| %>
               <div class="caption">
                 <a href="/users/<%=friendship.friend.id%>">
+                  <image> <%=image_tag friendship.friend.avatar.url(:comment) %> </image>
                   <span><%=friendship.friend.FirstName%> <%=friendship.friend.LastName%></span>
                   <%= link_to "Unfollow", friendship, :method => :delete %>
                 </a>
@@ -26,19 +27,9 @@
 <%else %>
 <%end%>
     </div>
-    <h3 align="middle">Placeholder</h3>
+
     <div class="col-md-9 col-sm-12">
-      <div class="col-md-4 col-sm-12">
-      <button class="btn btn-primary">Posts</button>
-      </div>
-      <div class="col-md-4 col-sm-12">
-      <button class="btn btn-primary">Albums</button>
-      </div>
-      <div class="col-md-4 col-sm-12">
-      <button class="btn btn-primary">Following</button>
-      </div>
-      <hr>
-    </div>
+
 
     <div class="transitions-enabled col-md-9" id="pins">
     <% @pins.each do |pin| %>
@@ -74,7 +65,7 @@
     <% end %>
   </div>
 
-
+</div>
 
 
 </div>
