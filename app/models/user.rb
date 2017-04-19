@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :comments, dependent: :destroy
   has_many :friends, :through => :friendships
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
 
 
   has_attached_file :avatar, :styles => { :profile => "150x150>", :comment => "75x75>"}
