@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     # params[:id] comes from the URL: /users/:id
     @user = User.find(params[:id])
     @users = User.all
-    @pins = @user.pins.all
+    @pins = @user.pins.all.order("created_at DESC")
   end
 
   def edit
