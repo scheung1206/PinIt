@@ -53,6 +53,22 @@ class PinsController < ApplicationController
 			@pins = Pin.all
 		end
 	end
+
+	def following
+    @friends = current_user.friendships.all
+    friendsPins = Array.new
+    @friends.each do |friend|
+      afriend = User.find(friend.friend_id)
+      afriend.pins.all.each do |pin|
+        friendsPins.push(pin)
+      end
+    end
+    @pins = friendsPins.sort_by {|pin| pin.created_at }.reverse
+  end
+
+	def mine
+		@pins = current_user.pins.all.order("created_at DESC")
+	end
 	private
 
 	def pin_params
