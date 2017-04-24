@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   		put "like", to: "pins#upvote"
   	end
   end
+  get 'mine', to: 'pins#mine'
+  get 'following', to: 'pins#following'
   #get "users/sign_up"
   root "pins#index"
   # get 'users', to: "users#index", as: "users"
