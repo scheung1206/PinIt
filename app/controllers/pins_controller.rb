@@ -91,6 +91,10 @@ class PinsController < ApplicationController
 	def mine
 		@pins = current_user.pins.all.order("created_at DESC")
 	end
+
+	def pinned
+		@pins = current_user.find_up_voted_items
+	end
 	private
 
 	def pin_params

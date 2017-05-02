@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   end
   get 'mine', to: 'pins#mine'
   get 'following', to: 'pins#following'
+  get 'pinned', to: 'pins#pinned'
   #get "users/sign_up"
   root "pins#index"
   # get 'users', to: "users#index", as: "users"

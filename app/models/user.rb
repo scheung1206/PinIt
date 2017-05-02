@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :friends, :through => :friendships
   has_many :messages
   has_many :conversations, foreign_key: :sender_id
+  acts_as_voter
 
 
   has_attached_file :avatar, :styles => { :profile => "150x150>", :comment => "75x75>"}
