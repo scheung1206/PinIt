@@ -13,6 +13,7 @@ class PinsController < ApplicationController
 		@pin = Pin.find params[:id]
 		@comments = @pin.comments.all
 		@comment = Comment.new
+		@effect = 0
 	end
 	def create
 		@pin = current_user.pins.build(pin_params)
@@ -52,6 +53,27 @@ class PinsController < ApplicationController
 		else
 			@pins = Pin.all
 		end
+	end
+
+	def grey
+		@pin = Pin.find params[:id]
+		@comments = @pin.comments.all
+		@comment = Comment.new
+		@effect = 1
+	end
+
+	def blur
+		@pin = Pin.find params[:id]
+		@comments = @pin.comments.all
+		@comment = Comment.new
+		@effect = 2
+	end
+
+	def contrast
+		@pin = Pin.find params[:id]
+		@comments = @pin.comments.all
+		@comment = Comment.new
+		@effect = 3
 	end
 
 	def following

@@ -24,7 +24,9 @@ Rails.application.routes.draw do
       get 'search'
     end
   	member do
-
+      get 'grey'
+      get 'blur'
+      get 'contrast'
   		put "like", to: "pins#upvote"
   	end
   end
