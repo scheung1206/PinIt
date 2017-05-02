@@ -25,6 +25,7 @@ gem 'masonry-rails', '~> 0.2.4'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'searchkick', '~> 1.1', '>= 1.1.2'
 gem 'bonsai-elasticsearch-rails'
+gem 'youtube_addy'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

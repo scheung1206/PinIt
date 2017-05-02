@@ -2,6 +2,8 @@
   <div class="col-md-8 col-md-offset-2">
     <div class="panel panel-default">
       <div class="panel-heading pin_image">
+        <% unless @pin.ytlink.nil? %>  <iframe  width="748" height="480" src="https://www.youtube.com/embed/<%=@pin.ytlink%>" frameborder="0" allowfullscreen></iframe><% end %>
+        <% if !@pin.image_file_name.nil? %>
         <% if @effect == 0 %>
         <%= image_tag @pin.image.url %>
         <% elsif @effect == 1 %>
@@ -13,6 +15,7 @@
         <%= image_tag @pin.image.url %>
         </div>
         <% end %>
+        <% end %>
       </div>
       <div class="panel-body">
         <h1>
@@ -21,12 +24,14 @@
         <p class="description">
           <%= @pin.description %>
         </p>
+        <% if @pin.ytlink.nil? %>
         <ul class="nav nav-pills pull-right">
           <li class="active"><%= link_to "Default", pin_path(@pin), class: "btn btn-default" %></li>
           <li><%= link_to "Grey", grey_pin_path(@pin), class: "btn btn-default" %></li>
         	<li><%= link_to "Blur", blur_pin_path(@pin), class: "btn btn-default" %></li>
           <li ><%= link_to "Contrast", contrast_pin_path(@pin), class: "btn btn-default" %></li>
         </ul>
+        <% end %>
       </div>
       <div class="panel-footer">
         <div class="row">
