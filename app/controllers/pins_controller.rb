@@ -14,6 +14,7 @@ class PinsController < ApplicationController
 		@comments = @pin.comments.all
 		@comment = Comment.new
 		@effect = 0
+		@albums = Album.where(user_id: current_user.id)
 	end
 	def create
 		@pin = current_user.pins.build(pin_params)
@@ -24,6 +25,15 @@ class PinsController < ApplicationController
 			render 'new'
 		end
 	end
+
+	def append
+    @album = Album.find(params[:id])
+    @pin = Pin.find(params[:pin_id])
+		@pin.album_id = @album.id
+		if @pin.save
+			redirect_to @pin, notice: "Added to Album"
+		end
+  end
 
 	def edit
 	end

@@ -17,8 +17,11 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
   end
   resources :friendships
-  resources :users
+  resources :users do
+    resources :albums
+  end
   resources :pins do
+    put 'append'
     resources :comments, except: [:show, :index]
     collection do
       get 'search'

@@ -55,6 +55,13 @@
                 <%= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
               <% end %>
             </div>
+            <br><br>
+            <div class="btn-group pull-right">
+<%= form_tag pin_append_path(@pin.id), method: :put do %>
+  <%= select_tag :id, options_from_collection_for_select(@albums, :id,:title) %>
+<%= submit_tag "Add to Album" %>
+<% end %>
+</div>
           </div>
         </div>
       </div>

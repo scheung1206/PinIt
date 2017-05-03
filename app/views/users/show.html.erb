@@ -29,42 +29,12 @@
     </div>
 
     <div class="col-md-9 col-sm-12">
-
+      <%= render 'albums/form' %>
 
     <div class="transitions-enabled col-md-9" id="pins">
-    <% @pins.each do |pin| %>
-      <div class="box panel panel-default">
-        <% unless pin.ytlink.nil? %>  <iframe  width="348" height="200" src="https://www.youtube.com/embed/<%=pin.ytlink%>" frameborder="0" allowfullscreen></iframe><% end %>
-        <% if !pin.image_file_name.nil? %>
-        <%= link_to (image_tag pin.image.url), pin %>
-        <% end %>
-        <h2>
-          <%= link_to pin.title, pin %>
-        </h2>
-        <div class="panel-footer">
-          <div class="row">
-            <div class="col-md-10">
-              <p class="user">
-                Submitted by
-                <a href="<%= user_path(pin.user.id) %>">
-                  <%= pin.user.FirstName %>
-                  <%= pin.user.LastName %>
-                </a>
-              </p>
-            </div>
-            <div class="col-md-2">
-              <p class="like">
-                <div class="btn-group pull-right">
-                  <%= link_to like_pin_path(pin), method: :put, class: "btn btn-default" do %>
-                    <span class="glyphicon glyphicon-pushpin"></span>
-                    <%= pin.get_upvotes.size %>
-                  <% end %>
-                  </div>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <% @albums.each do |album| %>
+      <a href="/users/<%=@user.id%>/albums/<%=album.id%>"><h2> <%=album.title %> </h2></a>
+
     <% end %>
   </div>
 
