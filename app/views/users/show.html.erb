@@ -1,5 +1,5 @@
 <div class="row">
-    <h1 align="middle"> My Page </h1>
+    <h1 align="middle"> My Albums </h1>
     <div class="col-md-3 col-sm-12">
       <% if @user.avatar? %>
       <image> <%=image_tag @user.avatar.url(:profile) %> </image>
@@ -29,18 +29,30 @@
     </div>
 
     <div class="col-md-9 col-sm-12">
+      <div>
       <a href="<%=current_user.id%>/albums/new">
     <button class="btn btn-default">New Album</button>
   </a>
-
-    <div class="transitions-enabled col-md-9" id="pins">
-    <% @albums.each do |album| %>
-      <% if album.private == true && album.user_id != current_user.id%>
-      <% else %>
-        <a href="/users/<%=@user.id%>/albums/<%=album.id%>"><h2> <%=album.title %> </h2></a>
+</div>
+  <% @albums.each do |album| %>
+    <% if album.private == true && album.user_id != current_user.id%>
+    <% else %>
+    <div class="transitions-enabled col-md-9" style= "max-width: 370px;"id="pins">
+      <div class="box panel panel-default" style= "max-width: 370px; max-height: 270px;">
+        <% if !AlbumPin.where(album_id: album.id).first.nil? %>
+        <% unless Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.ytlink.nil? %>  <iframe  width="348" height="200" src="https://www.youtube.com/embed/<%=Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.ytlink%>" frameborder="0" allowfullscreen></iframe><% end %>
+        <% if !Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.image_file_name.nil? %>
+        <%= link_to (image_tag Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.image.url, :style => "max-height: 200px;"), user_album_path(current_user.id,album.id) %>
+        <% end %>
+        <% end %>
+        <h2>
+          <%= link_to album.title, user_album_path(current_user.id,album.id) %>
+            <button class="btn btn-default pull-right">  <%= AlbumPin.where(album_id: album.id).size %></button>
+        </h2>
+      </div>
       <% end %>
+      </div>
     <% end %>
-  </div>
 
 </div>
 
