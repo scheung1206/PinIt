@@ -27,10 +27,12 @@ class PinsController < ApplicationController
 	end
 
 	def append
+		@albumPin = AlbumPin.new
     @album = Album.find(params[:id])
     @pin = Pin.find(params[:pin_id])
-		@pin.album_id = @album.id
-		if @pin.save
+		@albumPin.album_id = @album.id
+		@albumPin.pin_id = @pin.id
+		if @albumPin.save
 			redirect_to @pin, notice: "Added to Album"
 		end
   end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170503212836) do
+ActiveRecord::Schema.define(version: 20170504002347) do
+
+  create_table "album_pins", force: :cascade do |t|
+    t.integer  "album_id"
+    t.integer  "pin_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["album_id"], name: "index_album_pins_on_album_id"
+    t.index ["pin_id"], name: "index_album_pins_on_pin_id"
+  end
 
   create_table "albums", force: :cascade do |t|
     t.string   "title"
@@ -66,7 +75,6 @@ ActiveRecord::Schema.define(version: 20170503212836) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "ytlink"
-    t.integer  "album_id"
     t.index ["user_id"], name: "index_pins_on_user_id"
   end
 

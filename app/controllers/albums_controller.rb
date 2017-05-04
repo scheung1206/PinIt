@@ -7,7 +7,11 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @pins = Pin.where(album_id: @album.id)
+    @albumPins = AlbumPin.where(album_id: @album.id)
+    @pins = Array.new
+    @albumPins.each do |albumpin|
+      @pins.append(Pin.find(albumpin.pin_id))
+    end
   end
 
   def create
