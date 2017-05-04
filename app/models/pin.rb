@@ -3,6 +3,7 @@ class Pin < ActiveRecord::Base
 	acts_as_votable
 	belongs_to :user
 	has_many :comments
+	has_many :albumPins, dependent: :destroy
 	before_save :parse_yt_link
 
 	has_attached_file :image, :styles => { :medium => "300x300>"}

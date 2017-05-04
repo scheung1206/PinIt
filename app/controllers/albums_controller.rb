@@ -19,11 +19,11 @@ class AlbumsController < ApplicationController
     @album = Album.new(album_params)
     @album.user_id = current_user.id
     respond_to do |format|
-      if @album.save
+      if (@album.save && @album.title != "")
         format.html { redirect_to @user, notice: 'Album was successfully created.' }
         format.json { render :show, status: :created, location: @album }
       else
-        format.html { render :new }
+        format.html { redirect_to @user,notice: 'Please enter Album title.'}
         format.json { render json: @album.errors, status: :unprocessable_entity }
       end
     end

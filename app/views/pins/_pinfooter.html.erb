@@ -1,0 +1,36 @@
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="user">
+        Submitted by
+        <a href="<%= user_path(@pin.user.id) %>">
+          <%= @pin.user.FirstName %>
+          <%= @pin.user.LastName %>
+        </a>
+      </p>
+    </div>
+    <div class="col-md-6">
+      <div class="btn-group pull-right">
+        <%= link_to like_pin_path(@pin), method: :put, class: "btn btn-default" do %>
+          <span class="glyphicon glyphicon-pushpin"></span>
+          <%= @pin.get_upvotes.size %>
+        <% end %>
+        <% if user_signed_in? && current_user.id == @pin.user_id %>
+          <%= link_to "Edit", edit_pin_path, class: "btn btn-default" %>
+          <%= link_to "Delete", pin_path, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-default" %>
+        <% end %>
+      </div>
+      <br><br>
+      <div class="btn-group pull-right">
+        <div class="col-md-6">
+<%= form_tag pin_append_path(@pin.id), method: :put do %>
+<%= select_tag :id, options_from_collection_for_select(@albums, :id,:title), class: "form-control" %>
+</div>
+<div class="col-md-6">
+<%= submit_tag "Add to Album", class: "btn btn-default" %>
+<% end %>
+</div>
+</div>
+    </div>
+  </div>
+</div>

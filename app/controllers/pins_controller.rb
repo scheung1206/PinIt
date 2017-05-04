@@ -34,6 +34,8 @@ class PinsController < ApplicationController
 		@albumPin.pin_id = @pin.id
 		if @albumPin.save
 			redirect_to @pin, notice: "Added to Album"
+		else
+			redirect_to @pin, notice: "Already in Album"
 		end
   end
 
@@ -72,6 +74,7 @@ class PinsController < ApplicationController
 		@comments = @pin.comments.all
 		@comment = Comment.new
 		@effect = 1
+		@albums = Album.where(user_id: current_user.id)
 	end
 
 	def blur
@@ -79,6 +82,7 @@ class PinsController < ApplicationController
 		@comments = @pin.comments.all
 		@comment = Comment.new
 		@effect = 2
+		@albums = Album.where(user_id: current_user.id)
 	end
 
 	def contrast
@@ -86,6 +90,7 @@ class PinsController < ApplicationController
 		@comments = @pin.comments.all
 		@comment = Comment.new
 		@effect = 3
+		@albums = Album.where(user_id: current_user.id)
 	end
 
 	def following
