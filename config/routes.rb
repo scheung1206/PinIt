@@ -36,11 +36,12 @@ Rails.application.routes.draw do
   get 'mine', to: 'pins#mine'
   get 'following', to: 'pins#following'
   get 'pinned', to: 'pins#pinned'
+  delete 'remove', to: 'albums#remove'
   #get "users/sign_up"
   root "pins#index"
   # get 'users', to: "users#index", as: "users"
   # get 'users/:id', to: "users#show", as: "user"
-
+  #resources :album_pins
   resources :rooms
   match '/party/:id', :to => "rooms#party", :as => :party, :via => :get
 

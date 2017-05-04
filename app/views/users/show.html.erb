@@ -29,12 +29,16 @@
     </div>
 
     <div class="col-md-9 col-sm-12">
-      <%= render 'albums/form' %>
+      <a href="<%=current_user.id%>/albums/new">
+    <button class="btn btn-default">New Album</button>
+  </a>
 
     <div class="transitions-enabled col-md-9" id="pins">
     <% @albums.each do |album| %>
-      <a href="/users/<%=@user.id%>/albums/<%=album.id%>"><h2> <%=album.title %> </h2></a>
-
+      <% if album.private == true && album.user_id != current_user.id%>
+      <% else %>
+        <a href="/users/<%=@user.id%>/albums/<%=album.id%>"><h2> <%=album.title %> </h2></a>
+      <% end %>
     <% end %>
   </div>
 

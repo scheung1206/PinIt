@@ -23,11 +23,13 @@
       <br><br>
       <div class="btn-group pull-right">
         <div class="col-md-6">
+          <% if !@albums.empty? %>
 <%= form_tag pin_append_path(@pin.id), method: :put do %>
 <%= select_tag :id, options_from_collection_for_select(@albums, :id,:title), class: "form-control" %>
 </div>
 <div class="col-md-6">
 <%= submit_tag "Add to Album", class: "btn btn-default" %>
+<% end %>
 <% end %>
 </div>
 </div>

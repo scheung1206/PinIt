@@ -10,7 +10,6 @@ class UsersController < ApplicationController
     @users = User.all
     @pins = @user.pins.all.order("created_at DESC")
     @albums = Album.where(user_id: @user.id)
-    @album = Album.new
   end
 
   def edit
