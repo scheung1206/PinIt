@@ -15,10 +15,10 @@
           <%= link_to image_tag("pinit_primary.png"), root_path, class: "logoLink" %>
       </div>
       <% if user_signed_in? %>
-      <%= form_tag search_pins_path, method: :get, class: "navbar-form navbar-left", role: "search" do %>
+      <%= form_tag search_pins_path, method: :get, class: "navbar-form navbar-left", style: "margin-left:50px;margin-bottom:0px", role: "search" do %>
         <p>
-          <%= text_field_tag :search, params[:search], class: "search-form" %>
-          <%= submit_tag "Search", name: nil, class: "search-button" %>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+          <%= submit_tag "Search", name: nil, class: "btn btn-default" %>
         </p>
       <% end %>
         <ul class="nav navbar-nav navbar-right">
@@ -42,21 +42,21 @@
           </li>
         </ul>
       <% else %>
-          <%= link_to new_user_registration_path do%>
-            <button class="btn btn-info btn-mini">Sign Up</button>
-          <%end%>
           <%= form_for(:user, :url => session_path(:user), html: { class: "navbar-form navbar-right form-inline" }) do |f| %>
           <div class="form-group">
             <%= f.text_field :email, :placeholder => "Email", class: "form-control" %>  </div>
           <div class="form-group">
             <%= f.password_field :password, :placeholder => "Password", class: "form-control"  %> </div>
-          <%= f.submit 'Login', class: "btn btn-default" %>
+          <%= f.submit 'Login', class: "sign-in-btn" %>
           <% end %>
+          <%= link_to new_user_registration_path do%>
+            <button class="sign-up-btn">Sign Up</button>
+          <%end%>
       <% end %>
     </div>
   </nav>
   <div class="container">
-    
+
     <%= yield %>
   </div>
 </body>

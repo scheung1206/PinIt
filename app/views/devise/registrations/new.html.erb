@@ -1,31 +1,30 @@
 <div class="col-md-8 col-md-offset-2">
   <div class="row">
-    <div class="panel panel-default">
+    <div class="signup-panel">
       <div class="pan-signup-head">
-        <h2>Sign up and start pinning</h2>
+        <h2 class="signup-header">Sign up and start pinning</h2>
       </div>
-      <div class="panel-body">
+      <div class="signup-body">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
                   <%= devise_error_messages! %>
-                  <div class="fg-first-name">
+                  <div class="fg">
                     <%= f.text_field :FirstName, placeholder: "First name", autofocus: true, class: "form-control" %>
                   </div>
-                  <div class="fg-last-name">
+                  <div class="fg">
                     <%= f.text_field :LastName, placeholder: "Last name", autofocus: true, class: "form-control" %>
                   </div>
-                  <div class="fg-email">
+                  <div class="fg">
                     <%= f.email_field :email, placeholder: "Email", autofocus: true, class: "form-control" %>
                   </div>
-                  <div class="fg-password">
+                  <div class="fg">
                     <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %>
-                    <br />
                     <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "form-control" %>
                   </div>
-                  <div class="fg-confirm">
+                  <div class="fg">
                     <%= f.password_field :password_confirmation, placeholder: "Confirm password", autocomplete: "off", class: "form-control" %>
                   </div>
                   <div class="fgbtn-signup">
-                    <%= button_tag(type: 'submit', class: "primarybtn-signup", id: 'validForm') do %>
+                    <%= button_tag(type: 'submit', class: "signup-btn", id: 'validForm') do %>
                         <span class="icon-envelope"></span>Sign up
                     <% end %>
                   </div>

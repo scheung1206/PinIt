@@ -6,7 +6,7 @@
  * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
  *
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles fined in any styles
+ * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
@@ -14,75 +14,110 @@
  *= require_tree .
  *= require_self
  */
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 body {
-    background: #E9E9E9;
+	background: #E9E9E9;
 }
+
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 100;
+	font-weight: 100;
 }
-input.btn.btn-default {
-    width: 100px;
-    height: 35px;
-    background-color: #4CAF50;
-    color: #FFFFFF;
-}
-button.btn.btn-info.btn-mini {
-    width: 100px;
-    height: 35px;
-    position: relative;
-    margin-top: 8px;
-    right: 60px;
-    background-color: #e10707;
-    border: none;
-    font-weight: 400%;
-}
-form.navbar-form.navbar-right.form-inline {
-    position: relative;
-    left: 45px;
-}
+
 nav {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-    .navbar-brand {
-        a {
-            color: #BD1E23;
-            font-weight: bold;
-            &:hover {
-                text-decoration: none;
-            }
-        }
-    }
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	.navbar-brand {
+		a {
+			color: #BD1E23;
+			font-weight: bold;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
 }
-/*
- * login page
- */
-h2 {
-    position: relative;
-    padding-left: 22px;
-    font-size: 200%;
-    font-weight: bold;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
+
+#pins {
+  margin: 0 auto;
+  width: 100%;
+  .box {
+	  margin: 10px;
+	  width: 350px;
+	  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
+	  border-radius: 7px;
+	  text-align: center;
+	  img {
+	  	max-width: 100%;
+	  	height: auto;
+	  }
+	  h2 {
+	  	font-size: 22px;
+	  	margin: 0;
+	  	padding: 25px 10px;
+	  	a {
+				color: #474747;
+	  	}
+	  }
+	  .user {
+	  	font-size: 12px;
+			padding: 15px;
+			margin: 0;
+	  }
+		.like {
+			margin: 5px;
+	  }
+	}
 }
-.logoLink img {
-    position: absolute;
-    bottom: 6px;
-    width: 60px;
-    left: 550px;
-    margin-right: 20px;
+
+#edit_page {
+	.current_image {
+		img {
+			display: block;
+			margin: 20px 0;
+		}
+	}
 }
-div.fg-password {
-    margin-top: -15px;
+
+#pin_show {
+	.panel-heading {
+		padding: 0;
+	}
+	.pin_image {
+		img {
+			max-width: 100%;
+			width: 100%;
+			display: block;
+			margin: 0 auto;
+		}
+	}
+	.panel-body {
+		padding: 35px;
+		h1 {
+			margin: 0 0 10px 0;
+		}
+		.description {
+			color: #868686;
+			line-height: 1.75;
+			margin: 0;
+		}
+	}
+	.panel-footer {
+		padding: 20px 35px;
+		p {
+			margin: 0;
+		}
+		.user {
+			padding-top: 8px;
+		}
+	}
 }
-div.panel-body {
-    height: 305px;
-    width: 305px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
+
+textarea {
+	min-height: 250px;
 }
+
 @media (min-aspect-ratio: 16/9) {
     .fullscreen-bg__video {
         width: 100%;
@@ -111,94 +146,50 @@ div.panel-body {
     width: 100%;
     height: 100%;
 }
-div.panel.panel-default {
-    position: absolute;
+
+div.signup-panel {
+	position: absolute;
+	background-color: #ffffff;
     left: 0;
     right: 0;
     width: 375px;
     height: 430px;
     left: 200px;
 }
-/*
- * Change input color to black when in focus. This is dependent
- * upon which browser is being used. Should work for Chrome, Fox, IE.
- */
-:focus::-webkit-input-placeholder {
-    color: black;
-}
-input[type="text"], textarea {
-    background-color: #DCDCDC;
-}
-input[type="password"] {
-    background-color: #DCDCDC;
-}
-input[type="email"] {
-    background-color: #DCDCDC;
-}
-input#user_FirstName.form-control {
-    border: none;
-    height: 35px;
-    width: 275px;
+
+.signup-body {
+	height: 305px;
+    width: 305px;
+    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
+    margin: auto;
 }
-input#user_LastName.form-control {
-    margin-top: 5px;
-    border: none;
-    height: 35px;
-    width: 275px;
+
+.fg {
+	margin-bottom: 10px;
 }
-.form-group input#user_email.form-control {
-    width: 200px;
-    height: 35px;
+
+.signup-btn {
+	margin-top: 15px;
+	 width: 305px;
+	 height: 35px;
+	 background-color: #4CAF50;
+	 border: none;
+	 border-radius: 4px;
+	 color: #FFFFFF;
+	 font-weight: 500%;
+	 transition: all 0.5s;
+	 cursor: pointer;
+	 text-align: center;
 }
-.form-group input#user_password.form-control {
-    width: 200px;
-    height: 35px;
-}
-.fg-email input#user_email.form-control {
-    margin-top: 5px;
-    background-color: #DCDCDC;
-    border: none;
-    height: 35px;
-    width: 275px;
-}
-.fg-password input#user_password.form-control {
-    width: 275px;
-    height: 35px;
-}
-input#user_password_confirmation.form-control {
-    margin-top: 5px;
-    width: 275px;
-    height: 35px;
-}
-input#search.search-form {
-    position: relative;
-    top: 5px;
-}
-input.search-button {
-    position: relative;
-    top: 5px;
-}
-button#validForm.primarybtn-signup {
-    margin-top: 15px;
-    width: 275px;
-    height: 35px;
-    background-color: #4CAF50;
-    border: none;
-    border-radius: 4px;
-    color: #FFFFFF;
-    font-weight: 500%;
-    transition: all 0.5s;
-    cursor: pointer;
-    text-align: center;
-}
-button#validForm.primarybtn-signup span {
+button#validForm.signup-btn span {
     cursor: pointer;
     position: absolute;
     transition: .5s;
 }
-button#validForm.primarybtn-signup span:after {
+button#validForm.signup-btn span:after {
     content: '\00bb';
     position: absolute;
     opacity: 0;
@@ -206,13 +197,14 @@ button#validForm.primarybtn-signup span:after {
     left: 50px;
     transition: 0.5s;
 }
-button#validForm.primarybtn-signup:hover span {
+button#validForm.signup-btn:hover span {
     padding-right: -25px;
 }
-button#validForm.primarybtn-signup:hover span:after {
+button#validForm.signup-btn:hover span:after {
     opacity: 1;
     right: 0;
 }
+
 div.su-label {
     position: relative;
     top: 50px;
@@ -224,194 +216,43 @@ div.link-login {
     left: 180px;
     top: 25px;
 }
-/*
- * end login page
- */
-/*
- * edit account page
- */
-h2#edit-heading {
-    padding-left: 20px;
+
+.signup-header {
+	position: relative;
+    padding-left: 22px;
+    font-size: 200%;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
 }
-h4#cancel-account {
-    position: relative;
-    padding-left: 20px;
+
+.logoLink img {
+    position: absolute;
+    bottom: 6px;
+    width: 60px;
+    margin-right: 20px;
 }
-div.phead.pdef-editAccount {
-    border-width: 1px;
-    border-color: #696969;
-}
-div.panel.pdef-editAccount {
-    position: relative;
-    margin: none;
-    border-color: #696969;
-    border-width: 1px;
-    width: 400px;
-    left: 165px;
-}
-div.editAccount-firstName {
-}
-div.panel-body-account {
-    height: 305px;
-    width: 305px;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    padding-top: 0px;
-}
-div.pfoot-editAccount {
-    position: relative;
-    margin-top: 175px;
-}
-input.update-btn {
-    width: 305px;
-    height: 35px;
-    margin-top: 35px;
-}
-input.cancel-btn {
-    position: relative;
-    width: 150px;
-    height: 30px;
-    background-color: red;
-    border: none;
-    color: #ffffff;
-    border-radius: 4px;
-    left: 130px;
-}
-a.btn.btn-default {
-    position: relative;
-    bottom: 23px;
-    width: 150px;
-    height: 30px;
-    background-color: green;
-    border: none;
-    color: #ffffff;
-    border-radius: 4px;
-    left: 130px;
-}
-p input.btn.btn-default {
-    color: red;
+
+input.sign-in-btn {
     width: 100px;
     height: 35px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+		border: none;
+		border-radius: 4px;
 }
-.editAccount-firstName input#user_FirstName.form-control {
-    position: relative;
-    width: 305px;
+button.sign-up-btn {
+    width: 100px;
     height: 35px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-}
-.editAccount-lastName input#user_LastName.form-control {
     position: relative;
-    width: 305px;
-    height: 35px;
-    margin-top: 0px;
-    margin-bottom: 5px;
+    margin-top: 8px;
+    left: 1050px;
+    background-color: #e10707;
+		border: none;
+		border-radius: 4px;
+    font-weight: 400%;
+		color: #ffffff;
 }
-.editAccount-email input#user_email.form-control {
+form.navbar-form.navbar-right.form-inline {
     position: relative;
-    width: 305px;
-    height: 35px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-}
-.cancel-password input#user_password.form-control {
-    position: relative;
-    width: 305px;
-    height: 35px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-}
-.cancel-password input#user_current_password.form-control {
-    position: relative;
-    width: 305px;
-    height: 35px;
-    margin-top: 0px;
-    margin-bottom: 5px;
-}
-.cancel-passwordConfirmation input#user_password_confirmation.form-control {
-    position: relative;
-    width: 305px;
-    height: 35px;
-    margin-top: 0px;
-}
-/*
- * end edit account page
- */
-#pins {
-  margin: 0 auto;
-  width: 100%;
-  .box {
-      margin: 10px;
-      width: 350px;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-      border-radius: 7px;
-      text-align: center;
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      h2 {
-        font-size: 22px;
-        margin: 0;
-        padding: 25px 10px;
-        a {
-                color: #474747;
-        }
-      }
-      .user {
-        font-size: 12px;
-            padding: 15px;
-            margin: 0;
-      }
-        .like {
-            margin: 5px;
-      }
-    }
-}
-#edit_page {
-    .current_image {
-        img {
-            display: block;
-            margin: 20px 0;
-        }
-    }
-}
-#pin_show {
-    .panel-heading {
-        padding: 0;
-    }
-    .pin_image {
-        img {
-            max-width: 100%;
-            width: 100%;
-            display: block;
-            margin: 0 auto;
-        }
-    }
-    .panel-body {
-        padding: 35px;
-        h1 {
-            margin: 0 0 10px 0;
-        }
-        .description {
-            color: #868686;
-            line-height: 1.75;
-            margin: 0;
-        }
-    }
-    .panel-footer {
-        padding: 20px 35px;
-        p {
-            margin: 0;
-        }
-        .user {
-            padding-top: 8px;
-        }
-    }
-}
-textarea {
-    min-height: 250px;
+    right: 85px;
 }
