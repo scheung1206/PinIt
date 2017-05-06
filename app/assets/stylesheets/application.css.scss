@@ -117,3 +117,142 @@ nav {
 textarea {
 	min-height: 250px;
 }
+
+@media (min-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        width: 100%;
+        height: auto;
+    }
+}
+@media (max-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+        width: auto;
+        height: 100%;
+    }
+}
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+.fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+div.signup-panel {
+	position: absolute;
+	background-color: #ffffff;
+    left: 0;
+    right: 0;
+    width: 375px;
+    height: 430px;
+    left: 200px;
+}
+
+.signup-body {
+	height: 305px;
+    width: 305px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.fg {
+	margin-bottom: 10px;
+}
+
+.signup-btn {
+	margin-top: 15px;
+	 width: 305px;
+	 height: 35px;
+	 background-color: #4CAF50;
+	 border: none;
+	 border-radius: 4px;
+	 color: #FFFFFF;
+	 font-weight: 500%;
+	 transition: all 0.5s;
+	 cursor: pointer;
+	 text-align: center;
+}
+button#validForm.signup-btn span {
+    cursor: pointer;
+    position: absolute;
+    transition: .5s;
+}
+button#validForm.signup-btn span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 1;
+    left: 50px;
+    transition: 0.5s;
+}
+button#validForm.signup-btn:hover span {
+    padding-right: -25px;
+}
+button#validForm.signup-btn:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+div.su-label {
+    position: relative;
+    top: 50px;
+    width: 130px;
+    margin-left: 45px;
+}
+div.link-login {
+    position: relative;
+    left: 180px;
+    top: 25px;
+}
+
+.signup-header {
+	position: relative;
+    padding-left: 22px;
+    font-size: 200%;
+    font-weight: bold;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.logoLink img {
+    position: absolute;
+    bottom: 6px;
+    width: 60px;
+    margin-right: 20px;
+}
+
+input.sign-in-btn {
+    width: 100px;
+    height: 35px;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+		border: none;
+		border-radius: 4px;
+}
+button.sign-up-btn {
+    width: 100px;
+    height: 35px;
+    position: relative;
+    margin-top: 8px;
+    left: 1050px;
+    background-color: #e10707;
+		border: none;
+		border-radius: 4px;
+    font-weight: 400%;
+		color: #ffffff;
+}
+form.navbar-form.navbar-right.form-inline {
+    position: relative;
+    right: 85px;
+}

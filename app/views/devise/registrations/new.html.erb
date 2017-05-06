@@ -1,45 +1,41 @@
 <div class="col-md-8 col-md-offset-2">
   <div class="row">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h2>Sign up</h2>
+    <div class="signup-panel">
+      <div class="pan-signup-head">
+        <h2 class="signup-header">Sign up and start pinning</h2>
       </div>
-      <div class="panel-body">
-      	<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-				  <%= devise_error_messages! %>
-
-				  <div class="form-group">
-				  	<%= f.label :FirstName %><br />
-				  	<%= f.text_field :FirstName, autofocus: true, class: "form-control" %>
-				  </div>
-
-				  <div class="form-group">
-				  	<%= f.label :LastName %><br />
-				  	<%= f.text_field :LastName, autofocus: true, class: "form-control" %>
-				  </div>
-
-				  <div class="form-group">
-				  	<%= f.label :email %><br />
-				  	<%= f.email_field :email, autofocus: true, class: "form-control" %>
-				  </div>
-
-				  <div class="form-group">
-				  	<%= f.label :password %> <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %><br />
-				    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-				  </div>
-
-				  <div class="form-group">
-				  	<%= f.label :password_confirmation %><br />
-				    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-				  </div>
-
-				  <div class="form-group">
-				  	<%= f.submit "Sign up", class: "btn btn-primary" %>
-				  </div>
-				<% end %>
-
-				<%= render "devise/shared/links" %>
+      <div class="signup-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                  <%= devise_error_messages! %>
+                  <div class="fg">
+                    <%= f.text_field :FirstName, placeholder: "First name", autofocus: true, class: "form-control" %>
+                  </div>
+                  <div class="fg">
+                    <%= f.text_field :LastName, placeholder: "Last name", autofocus: true, class: "form-control" %>
+                  </div>
+                  <div class="fg">
+                    <%= f.email_field :email, placeholder: "Email", autofocus: true, class: "form-control" %>
+                  </div>
+                  <div class="fg">
+                    <% if @validatable %><i>(<%= @minimum_password_length %> characters minimum)</i><% end %>
+                    <%= f.password_field :password, placeholder: "Password", autocomplete: "off", class: "form-control" %>
+                  </div>
+                  <div class="fg">
+                    <%= f.password_field :password_confirmation, placeholder: "Confirm password", autocomplete: "off", class: "form-control" %>
+                  </div>
+                  <div class="fgbtn-signup">
+                    <%= button_tag(type: 'submit', class: "signup-btn", id: 'validForm') do %>
+                        <span class="icon-envelope"></span>Sign up
+                    <% end %>
+                  </div>
+                <% end %>
+                <div class="su-label">
+                    <label>Already a member?</label>
+                </div>
+                <div class="link-login">
+                <%= render "devise/shared/links" %>
+                </div>
       </div>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
