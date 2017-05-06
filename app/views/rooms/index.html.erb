@@ -1,28 +1,47 @@
-<div id="newRoom">
-  <fieldset>
-  <legend>Start a New Room</legend>
-<%= form_for(@new_room) do |f| %>
-  Room Name: <%= f.text_field :name %><br/><br/>
-  Public? <%= f.check_box :public %><br/><br/>
+<div class="col-md-8 col-md-offset-2">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div id="newRoom">
+          <fieldset>
+          <h2 align="middle">Start a New Room</h2>
+        <%= form_for(@new_room) do |f| %>
+        <span style="font-weight:bold"> Room Name:</span> <%= f.text_field :name,class:"form-control" %><br/>
+        <span style="font-weight:bold">  Public? </span> <%= f.check_box :public,class:"form-control" %><br/>
 
-  <%= f.submit %>
-<% end %>
-</fieldset>
-</div>
-<br>
-<fieldset>
-  <legend>Existing Rooms</legend>
-  <table cellpadding="2" cellspacing="5">
+          <div><%= f.submit "Create" ,class: "btn btn-default"%></div>
+        <% end %>
+        </fieldset>
+        </div>
+      </div>
+
+  <h2 align="middle">Existing Room</h2>
+  <table cellpadding="4" cellspacing="4">
     <tr>
-      <th>Room Name </th>
-      <th>Started</th>
+      <th><div align="center">Room Name</div> </th>
+      <th><div align="center">Created by</div></th>
+      <th><div align="center">Created At</div></th>
     </tr>
 
     <% @rooms.each do |room| %>
-      <tr>
-        <td width="300px"><a href="/rooms/<%= room.id %>"><%= room.name %></a></td>
-        <td><%= room.created_at %></td>
+      <tr style="padding-bottom: 15px;">
+        <td style="padding-bottom: 15px;" width="250px"><a href="/rooms/<%= room.id %>"><div align="center"><%= room.name %></a></div></td>
+        <td style="padding-bottom: 15px;" width="250px">
+          <div align="center">
+          <% if User.find(room.user_id).avatar? %>
+          <image> <%=image_tag User.find(room.user_id).avatar.url(:comment), style:"width:35px;height:35px;" %> </image>
+          <% else %>
+          <img src="/assets/default.png" style="width:35px;height:35px;">
+          <% end %>
+        <a href="/users/<%=room.user_id%>" > <%= User.find(room.user_id).FirstName + " " + User.find(room.user_id).LastName %></a>
+      </div>
+    </td>
+    <td style="padding-bottom: 15px;">
+    <div align="center"> <%=room.created_at.strftime("%m/%d/%Y at %I:%M%p")%></div>
+    </td>
       </tr>
     <% end %>
   </table>
-</fieldset>
+
+</div>
+</div>
