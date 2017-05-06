@@ -3,10 +3,10 @@
 <span class="btn btn-danger pull-right">Delete</span>
 <% end %>
 <%= link_to edit_user_album_path, method: :get do %>
-<span class="btn btn-success pull-right">Edit</span>
+<span class="btn btn-primary pull-right">Edit</span>
 <% end %>
 <% end %>
-<h3 align="middle"> <%= @album.title %> </h3>
+<h3 align="middle" style="font-weight:bold;"> <%= @album.title %> </h3>
 
 <div class="transitions-enabled" id="pins">
   <% @pins.each do |pin| %>

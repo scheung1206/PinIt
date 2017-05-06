@@ -1,60 +1,100 @@
 <div class="row">
-    <h1 align="middle"> My Albums </h1>
-    <div class="col-md-3 col-sm-12">
-      <% if @user.avatar? %>
-      <image> <%=image_tag @user.avatar.url(:profile) %> </image>
-      <% end %>
-        <h3><%=@user.FirstName%> <%=@user.LastName%></h3>
-          <p><%=@user.Bio%></p>
+  <container id="maincontainer">
+    <aside>
+      <div class="col-md-12 col-sm-12" style="background-color:white;padding-top:20px;padding-bottom:20px;">
+        <% if @user.avatar? %>
+        <image style="margin-left:35px;"> <%=image_tag @user.avatar.url(:profile) %> </image>
+        <% else %>
+        <img style="margin-left:55px;" src="/assets/default.png">
+        <% end %>
+        <h3 align="middle"><%=@user.FirstName%> <%=@user.LastName%></h3>
+        <p align="middle"><%=@user.Bio%></p>
         <% if current_user.id == @user.id %>
-        <a href="/users/<%=@user.id%>/edit" class="btn btn-default">Edit Profile</a>
-        <br>
-        <div>
-          <div> Following </div>
+        <a href="/users/<%=@user.id%>/edit" class="btn btn-default" style="margin-left:70px;">Edit Profile</a>
+        <% end %>
+        <br><br>
+        <% if (current_user.friendships.where(:friend_id => @user.id).where(:user_id => current_user.id).empty? and !(@user == current_user))%>
+        <%=link_to "Follow", friendships_path(:friend_id => @user.id), class:"btn btn-default", style:"margin-left:80px;", :method => :post %>
+        <%else %>
+        <%end%>
+      <hr>
+
+          <h1 align="middle"> Following </h1>
           <% @user.friendships.each do |friendship| %>
-              <div class="caption">
-                <a href="/users/<%=friendship.friend.id%>">
-                  <image> <%=image_tag friendship.friend.avatar.url(:comment) %> </image>
-                  <span><%=friendship.friend.FirstName%> <%=friendship.friend.LastName%></span>
-                  <%= link_to "Unfollow", friendship, :method => :delete %>
-                </a>
-              </div>
+          <div class="caption">
+            <a href="/users/<%=friendship.friend.id%>">
+              <% if friendship.friend.avatar? %>
+              <image> <%=image_tag friendship.friend.avatar.url(:comment), style:"width:50px;height:50px;" %> </image>
+              <% else %>
+              <img src="/assets/default.png" style="width:50px;height:50px;">
+              <% end %>
+              <strong><%=friendship.friend.FirstName%> <%=friendship.friend.LastName%></strong>
+              <% if current_user.id == @user.id %>
+            <small>  <%= link_to "Unfollow", friendship, :method => :delete %></small>
+              <% end %>
+            </a>
+          </div>
+          <% end %>
+      </div>
+
+    </aside>
+    <article>
+      <div style="background-color:white;padding-top:20px;padding-bottom:60px;">
+        <div class="col-md-2 col-md-offset-1">
+          <span>
+             <div style="font-weight:bold;" align="center">Albums</div>
+          <div style="font-weight:bold;" align="center"> <%=@albums.size%></div></span>
+        </div>
+        <div class="col-md-2">
+          <span>
+          <div style="font-weight:bold;" align="center"> Pins </div>
+          <div style="font-weight:bold;" align="center">  <%=@user.pins.size%></div></span>
+        </div>
+        <div class="col-md-2">
+          <span>
+          <div style="font-weight:bold;" align="center">  Following </div>
+          <div style="font-weight:bold;" align="center"><%=@user.friendships.size%></div></span>
+        </div>
+            <div class="col-md-2">
+          <span>
+            <div style="font-weight:bold;" align="center">Pinned</div>
+            <div style="font-weight:bold;" align="center"> <%=@user.find_up_voted_items.size%></div></span>
+        </div>
+        <div class="col-md-2">
+          <span>
+            <div style="font-weight:bold;" align="center">Followers</div>
+            <div style="font-weight:bold;" align="center"><%=Friendship.where(friend_id:@user.id).size%></div></span>
+        </div>
+      </div>
+      <div class="col-md-12 col-sm-12" style="padding-top:20px;">
+        <div align="middle">
+          <% if @user == current_user %>
+          <a href="<%=current_user.id%>/albums/new">
+            <button class="btn btn-primary">New Album</button>
+          </a>
           <% end %>
         </div>
+        <% @albums.each do |album| %>
+        <% if album.private == true && album.user_id != current_user.id%>
+        <% else %>
+        <div class="transitions-enabled col-md-9" style= "max-width: 300px;margin-right: 15px;"id="pins">
+          <div class="box panel panel-default" style= "max-width: 300px; max-height: 270px;">
+            <% if !AlbumPin.where(album_id: album.id).first.nil? %>
+            <% unless Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.ytlink.nil? %>  <iframe  width="300" height="200" src="https://www.youtube.com/embed/<%=Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.ytlink%>" frameborder="0" allowfullscreen></iframe><% end %>
+            <% if !Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.image_file_name.nil? %>
+            <%= link_to (image_tag Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.image.url, :style => "max-height: 200px;"), user_album_path(current_user.id,album.id) %>
+            <% end %>
+            <% end %>
+            <h2 style="font-weight:bold;">
+              <%= link_to album.title, user_album_path(current_user.id,album.id) %>
+              <button class="btn btn-default pull-right">  <%= AlbumPin.where(album_id: album.id).size %></button>
+            </h2>
+          </div>
+          </div>
+          <% end %>
         <% end %>
-        <% if (current_user.friendships.where(:friend_id => @user.id).where(:user_id => current_user.id).empty? and !(@user == current_user))%>
-  <%=link_to "Follow", friendships_path(:friend_id => @user.id), :method => :post %>
-<%else %>
-<%end%>
-    </div>
 
-    <div class="col-md-9 col-sm-12">
-      <div>
-      <a href="<%=current_user.id%>/albums/new">
-    <button class="btn btn-default">New Album</button>
-  </a>
-</div>
-  <% @albums.each do |album| %>
-    <% if album.private == true && album.user_id != current_user.id%>
-    <% else %>
-    <div class="transitions-enabled col-md-9" style= "max-width: 370px;"id="pins">
-      <div class="box panel panel-default" style= "max-width: 370px; max-height: 270px;">
-        <% if !AlbumPin.where(album_id: album.id).first.nil? %>
-        <% unless Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.ytlink.nil? %>  <iframe  width="348" height="200" src="https://www.youtube.com/embed/<%=Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.ytlink%>" frameborder="0" allowfullscreen></iframe><% end %>
-        <% if !Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.image_file_name.nil? %>
-        <%= link_to (image_tag Pin.where(id: AlbumPin.where(album_id: album.id).first.pin_id).first.image.url, :style => "max-height: 200px;"), user_album_path(current_user.id,album.id) %>
-        <% end %>
-        <% end %>
-        <h2>
-          <%= link_to album.title, user_album_path(current_user.id,album.id) %>
-            <button class="btn btn-default pull-right">  <%= AlbumPin.where(album_id: album.id).size %></button>
-        </h2>
       </div>
-      <% end %>
-      </div>
-    <% end %>
-
-</div>
-
-
+    </article>
+  </container>
 </div>

@@ -1,3 +1,23 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+aside {
+  width: 300px;
+  float: left;
+  padding-top: 35px;
+  padding-left: 35px;
+}
+article {
+  width: 740px;
+  flex: 1;
+  float: right;
+  padding-top: 35px;
+}
+.container {
+  width:auto;
+  padding-left: 0px;
+}
+#maincontainer {
+  width: 1080px;
+  margin: 0 auto;
+}
