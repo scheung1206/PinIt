@@ -3,7 +3,7 @@ require "opentok"
 before_filter :config_opentok,:except => [:index]
 before_action :authenticate_user!
   def index
-    @rooms = Room.where(:public => true).order("created_at DESC")
+    @rooms = Room.all.order("created_at DESC")
     @user = current_user
     @new_room = Room.new
   end

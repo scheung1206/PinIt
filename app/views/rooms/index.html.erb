@@ -20,13 +20,16 @@
     <tr>
       <th><div align="center">Room Name</div> </th>
       <th><div align="center">Created by</div></th>
+      <th><div align="center">Public?</div></th>
       <th><div align="center">Created At</div></th>
     </tr>
 
     <% @rooms.each do |room| %>
+    <% if !room.public? && current_user.id != room.user_id %>
+      <% else %>
       <tr style="padding-bottom: 15px;">
-        <td style="padding-bottom: 15px;" width="250px"><a href="/rooms/<%= room.id %>"><div align="center"><%= room.name %></a></div></td>
-        <td style="padding-bottom: 15px;" width="250px">
+        <td style="padding-bottom: 15px;" width="200px"><a href="/rooms/<%= room.id %>"><div align="center"><%= room.name %></a></div></td>
+        <td style="padding-bottom: 15px;" width="200px">
           <div align="center">
           <% if User.find(room.user_id).avatar? %>
           <image> <%=image_tag User.find(room.user_id).avatar.url(:comment), style:"width:35px;height:35px;" %> </image>
@@ -35,11 +38,15 @@
           <% end %>
         <a href="/users/<%=room.user_id%>" > <%= User.find(room.user_id).FirstName + " " + User.find(room.user_id).LastName %></a>
       </div>
+      <td style="padding-bottom: 15px;" width="180px">
+        <div align="center"><%=room.public%></div>
+      </td>
     </td>
     <td style="padding-bottom: 15px;">
     <div align="center"> <%=room.created_at.strftime("%m/%d/%Y at %I:%M%p")%></div>
     </td>
       </tr>
+      <% end %>
     <% end %>
   </table>
 
