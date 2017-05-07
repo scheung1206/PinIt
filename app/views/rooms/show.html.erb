@@ -41,6 +41,7 @@ TB.setLogLevel(TB.DEBUG);
         }
         var div = document.createElement('div');
         div.setAttribute('id', 'stream' + streams[i].streamId);
+        div.classList.add("col-md-3");
         document.body.appendChild(div);
         session.subscribe(streams[i], div.id);
       }
